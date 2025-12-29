@@ -61,7 +61,7 @@ export default function MockApis() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg- linear-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="relative">
             <div className="absolute inset-0 bg-purple-500 blur-xl opacity-50 rounded-full"></div>
@@ -74,7 +74,7 @@ export default function MockApis() {
   }
 
   return (
-    <div className="min-h-screen bg- linear-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
+    <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -82,7 +82,7 @@ export default function MockApis() {
             <div className="flex items-center gap-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-purple-500 blur-xl opacity-50"></div>
-                <div className="relative bg- linear-to-br from-purple-500 to-pink-500 p-3 rounded-xl">
+                <div className="relative bg-linear-to-br from-purple-500 to-pink-500 p-3 rounded-xl">
                   <Layers className="w-8 h-8 text-white" strokeWidth={2.5} />
                 </div>
               </div>
@@ -122,7 +122,7 @@ export default function MockApis() {
 
         {/* Content */}
         {apis.length === 0 ? (
-          <div className="bg- linear-to-br from-slate-800 to-slate-900 border border-slate-700/50 rounded-xl p-12">
+          <div className="bg-linear-to-br from-slate-800 to-slate-900 border border-slate-700/50 rounded-xl p-12">
             <div className="text-center">
               <div className="relative inline-block mb-6">
                 <div className="absolute inset-0 bg-slate-700 blur-2xl opacity-50 rounded-full"></div>
