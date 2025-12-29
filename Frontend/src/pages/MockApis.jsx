@@ -37,7 +37,7 @@ export default function MockApis() {
 
   // ✅ COPY MOCK API URL
   const handleCopy = (apiData) => {
-    const url = `http://localhost:5000/mock${apiData.endpoint}`;
+    const url = `https://frostfault-api-chaos-simulator-sujk.vercel.app/mock${apiData.endpoint}`;
     navigator.clipboard.writeText(url);
     showNotification("Mock API URL copied to clipboard!", "success");
   };
@@ -61,7 +61,7 @@ export default function MockApis() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
+      <div className="min-h-screen bg- linear-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="relative">
             <div className="absolute inset-0 bg-purple-500 blur-xl opacity-50 rounded-full"></div>
@@ -74,7 +74,7 @@ export default function MockApis() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
+    <div className="min-h-screen bg- linear-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -82,12 +82,12 @@ export default function MockApis() {
             <div className="flex items-center gap-4">
               <div className="relative">
                 <div className="absolute inset-0 bg-purple-500 blur-xl opacity-50"></div>
-                <div className="relative bg-gradient-to-br from-purple-500 to-pink-500 p-3 rounded-xl">
+                <div className="relative bg- linear-to-br from-purple-500 to-pink-500 p-3 rounded-xl">
                   <Layers className="w-8 h-8 text-white" strokeWidth={2.5} />
                 </div>
               </div>
               <div>
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <h1 className="text-3xl font-bold bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Mock APIs
                 </h1>
                 <p className="text-slate-400 mt-1">
@@ -99,7 +99,7 @@ export default function MockApis() {
             {/* Create Button */}
             <button
               onClick={() => navigate("/create")}
-              className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-lg text-white font-semibold transition-all shadow-lg shadow-purple-500/25"
+              className="flex items-center gap-2 px-6 py-3 bg- linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-lg text-white font-semibold transition-all shadow-lg shadow-purple-500/25"
             >
               <Plus className="w-5 h-5" />
               Create New API
@@ -122,7 +122,7 @@ export default function MockApis() {
 
         {/* Content */}
         {apis.length === 0 ? (
-          <div className="bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 rounded-xl p-12">
+          <div className="bg- linear-to-br from-slate-800 to-slate-900 border border-slate-700/50 rounded-xl p-12">
             <div className="text-center">
               <div className="relative inline-block mb-6">
                 <div className="absolute inset-0 bg-slate-700 blur-2xl opacity-50 rounded-full"></div>
@@ -136,7 +136,7 @@ export default function MockApis() {
               </p>
               <button
                 onClick={() => navigate("/create")}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-lg text-white font-semibold transition-all shadow-lg shadow-purple-500/25"
+                className="inline-flex items-center gap-2 px-6 py-3 bg- linear-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-lg text-white font-semibold transition-all shadow-lg shadow-purple-500/25"
               >
                 <Plus className="w-5 h-5" />
                 Create Your First API
