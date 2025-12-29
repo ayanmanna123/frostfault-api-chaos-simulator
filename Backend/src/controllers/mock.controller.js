@@ -1,6 +1,6 @@
 const MockApi = require("../models/MockApi.model");
 const { mockApiSchema } = require("../validators/mock.validator");
-
+ 
 // Create new mock API
 exports.createMockApi = async (req, res) => {
   const { error } = mockApiSchema.validate(req.body);
@@ -99,12 +99,21 @@ exports.getLogs = async (req, res) => {
 };
 
 
-exports.deleteMockApi = async (req, res) => {
-  const deleted = await MockApi.findByIdAndDelete(req.params.id);
 
-  if (!deleted) {
-    return res.status(404).json({ error: "Mock API not found" });
+exports.deleteMockApi = async (req, res, next) => {
+  try {
+    const deleted = await MockApi.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {
+      return res.status(404).json({
+        error: "Mock API not found"
+      });
+    }
+
+    res.json({
+      message: "Mock API deleted successfully"
+    });
+  } catch (err) {
+    next(err); // 👈 VERY IMPORTANT
   }
-
-  res.json({ message: "Mock API deleted" });
 };

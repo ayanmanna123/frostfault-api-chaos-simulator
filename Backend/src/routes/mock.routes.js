@@ -7,7 +7,8 @@ const {
   getMockApiById,
   updateMockApi,
   exportMockApi,
-  importMockApi
+  importMockApi,
+  deleteMockApi
 } = require("../controllers/mock.controller");
 
 // CREATE
@@ -16,7 +17,7 @@ router.post("/create", createMockApi);
 // LIST
 router.get("/", getAllMockApis);
 
-// EXPORT (JSON)
+// EXPORT
 router.get("/:id/export", exportMockApi);
 
 // GET ONE
@@ -25,12 +26,7 @@ router.get("/:id", getMockApiById);
 // UPDATE
 router.put("/:id", updateMockApi);
 
-// IMPORT
-router.post("/import", importMockApi);
-
-router.delete("/:id", async (req, res) => {
-  await MockApi.findByIdAndDelete(req.params.id);
-  res.json({ message: "Mock API deleted" });
-});
+// DELETE ✅
+router.delete("/:id", deleteMockApi);
 
 module.exports = router;
