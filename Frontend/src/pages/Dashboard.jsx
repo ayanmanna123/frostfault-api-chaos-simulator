@@ -51,7 +51,7 @@ export default function Dashboard() {
               </div>
             </div>
             <div>
-              <h1 className="text-3xl font-bold bg- linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold bg- linear-to-r from-purple-400 to-pink-400 bg-clip-text text-white">
                 API Chaos Dashboard
               </h1>
               <p className="text-slate-400 mt-1">Real-time analytics and performance metrics</p>
