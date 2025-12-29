@@ -1,0 +1,26 @@
+{
+    "name": "User Service",
+    "endpoint": "/api/users",
+    "method": "GET",
+    "successResponse": {
+        "users": [
+            {
+                "id": 1,
+                "name": "Ayan"
+            }
+        ]
+    },
+    "chaosConfig": {
+        "latency": {
+            "min": 200,
+            "max": 2000
+        },
+        "errorStatusCode": 500,
+        "errorProbability": 0.5,
+        "malformedResponse": false
+    },
+    "rateLimit": {
+        "limit": 3,
+        "windowMs": 10000
+    }
+}
