@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 
 const mockRoutes = require("./routes/mock.routes");
+const serveMockRoutes = require("./routes/serveMock.routes");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/api/mock", mockRoutes);
+app.use("/mock", serveMockRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "API Chaos Engineering Simulator Backend is running 🚀" });
