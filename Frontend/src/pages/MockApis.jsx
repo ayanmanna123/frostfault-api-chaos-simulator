@@ -37,7 +37,13 @@ export default function MockApis() {
 
   // ✅ COPY MOCK API URL
   const handleCopy = (apiData) => {
-    const url = `https://frostfault-api-chaos-simulator-sujk.vercel.app/mock${apiData.endpoint}`;
+    const baseUrl = "https://frostfault-api-chaos-simulator-sujk.vercel.app";
+
+    const url =
+      apiData.type === "GRAPHQL"
+        ? `${baseUrl}/mock/graphql`
+        : `${baseUrl}/mock${apiData.endpoint}`;
+
     navigator.clipboard.writeText(url);
     showNotification("Mock API URL copied to clipboard!", "success");
   };
@@ -91,7 +97,8 @@ export default function MockApis() {
                   Mock APIs
                 </h1>
                 <p className="text-slate-400 mt-1">
-                  {apis.length} {apis.length === 1 ? "endpoint" : "endpoints"} configured
+                  {apis.length} {apis.length === 1 ? "endpoint" : "endpoints"}{" "}
+                  configured
                 </p>
               </div>
             </div>
@@ -110,11 +117,13 @@ export default function MockApis() {
         {/* Notification */}
         {notification && (
           <div className="mb-6">
-            <Alert className={`${
-              notification.type === "success" 
-                ? "bg-green-500/10 border-green-500/30 text-green-400" 
-                : "bg-red-500/10 border-red-500/30 text-red-400"
-            }`}>
+            <Alert
+              className={`${
+                notification.type === "success"
+                  ? "bg-green-500/10 border-green-500/30 text-green-400"
+                  : "bg-red-500/10 border-red-500/30 text-red-400"
+              }`}
+            >
               <AlertDescription>{notification.message}</AlertDescription>
             </Alert>
           </div>
@@ -127,12 +136,18 @@ export default function MockApis() {
               <div className="relative inline-block mb-6">
                 <div className="absolute inset-0 bg-slate-700 blur-2xl opacity-50 rounded-full"></div>
                 <div className="relative bg-slate-800 p-6 rounded-full border border-slate-700/50">
-                  <Inbox className="w-16 h-16 text-slate-500" strokeWidth={1.5} />
+                  <Inbox
+                    className="w-16 h-16 text-slate-500"
+                    strokeWidth={1.5}
+                  />
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-white mb-2">No Mock APIs Yet</h2>
+              <h2 className="text-2xl font-bold text-white mb-2">
+                No Mock APIs Yet
+              </h2>
               <p className="text-slate-400 mb-6 max-w-md mx-auto">
-                Get started by creating your first mock API endpoint to simulate various failure scenarios and chaos conditions.
+                Get started by creating your first mock API endpoint to simulate
+                various failure scenarios and chaos conditions.
               </p>
               <button
                 onClick={() => navigate("/create")}
@@ -145,7 +160,7 @@ export default function MockApis() {
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {apis.map(apiItem => (
+            {apis.map((apiItem) => (
               <MockApiCard
                 key={apiItem._id}
                 api={apiItem}
