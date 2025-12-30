@@ -37,7 +37,7 @@ export default function MockApis() {
 
   // ✅ COPY MOCK API URL
   const handleCopy = (apiData) => {
-    const baseUrl = "https://frostfault-api-chaos-simulator-sujk.vercel.app";
+    const baseUrl = "https://frostfault-api.onrender.com";
 
     const url =
       apiData.type === "GRAPHQL"
