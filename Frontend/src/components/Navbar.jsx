@@ -11,7 +11,7 @@ const Logo = ({ src }) => (
       className="w-8 h-8 sm:w-10 sm:h-10"
     />
     <div>
-      <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+      <h1 className="text-lg sm:text-xl font-bold bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
         FrostFault
       </h1>
       <p className="text-xs text-slate-400 hidden sm:block">Api Chaos Simulator</p>
@@ -41,7 +41,7 @@ export default function Navbar() {
   ];
   
   return (
-    <nav className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700/50 shadow-xl">
+    <nav className="bg-linear-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700/50 shadow-xl">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
           {/* Logo/Brand & Status - Horizontal on mobile */}
