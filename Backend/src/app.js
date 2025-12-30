@@ -17,7 +17,8 @@ app.use(cors({
   origin: [
     "https://frostfault.xyz",
     "https://www.frostfault.xyz",
-    "https://frostfault-api-chaos-simulator.vercel.app"
+    "https://frostfault-api-chaos-simulator.vercel.app",
+    "http://localhost:5173"
   ]
 }));
 
