@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../api/api";
 import MetricCard from "../components/MetricCard";
 import { Activity, TrendingUp, Clock, AlertCircle, BarChart3, Zap } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 
 export default function Dashboard() {
   const [stats, setStats] = useState(null);
@@ -38,6 +39,22 @@ export default function Dashboard() {
 
   const successRate = stats.successRate ? parseFloat(stats.successRate).toFixed(1) : "0.0";
 
+  // Prepare chart data
+  const barChartData = [
+    {
+      name: "Requests",
+      Successful: stats.totalRequests - stats.errorRequests || 0,
+      Failed: stats.errorRequests || 0,
+    },
+  ];
+
+  const pieChartData = [
+    { name: "Successful", value: stats.totalRequests - stats.errorRequests || 0 },
+    { name: "Failed", value: stats.errorRequests || 0 },
+  ];
+
+  const COLORS = ["#10b981", "#ef4444"];
+
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
       <div className="max-w-7xl mx-auto">
@@ -51,7 +68,7 @@ export default function Dashboard() {
               </div>
             </div>
             <div>
-              <h1 className="text-3xl font-bold bg- linear-to-r from-purple-400 to-pink-400 bg-clip-text text-white">
+              <h1 className="text-3xl font-bold bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-white">
                 API Chaos Dashboard
               </h1>
               <p className="text-slate-400 mt-1">Real-time analytics and performance metrics</p>
@@ -90,7 +107,7 @@ export default function Dashboard() {
         </div>
 
         {/* Additional Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Quick Stats */}
           <div className="bg-linear-to-br from-slate-800 to-slate-900 border border-slate-700/50 rounded-xl p-6">
             <div className="flex items-center gap-3 mb-4">
@@ -140,7 +157,7 @@ export default function Dashboard() {
                 </div>
                 <div className="h-3 bg-slate-900/50 rounded-full overflow-hidden border border-slate-700/30">
                   <div 
-                    className="h-full bg- linear-to-r from-green-500 to-emerald-500 transition-all duration-500"
+                    className="h-full bg-linear-to-r from-green-500 to-emerald-500 transition-all duration-500"
                     style={{ width: `${successRate}%` }}
                   ></div>
                 </div>
@@ -158,7 +175,7 @@ export default function Dashboard() {
                 </div>
                 <div className="h-3 bg-slate-900/50 rounded-full overflow-hidden border border-slate-700/30">
                   <div 
-                    className="h-full bg- linear-to-r from-red-500 to-orange-500 transition-all duration-500"
+                    className="h-full bg-linear-to-r from-red-500 to-orange-500 transition-all duration-500"
                     style={{ 
                       width: `${stats.totalRequests > 0 
                         ? (stats.errorRequests / stats.totalRequests) * 100 
@@ -182,15 +199,81 @@ export default function Dashboard() {
                 <div className="h-3 bg-slate-900/50 rounded-full overflow-hidden border border-slate-700/30">
                   <div 
                     className={`h-full transition-all duration-500 ${
-                      stats.avgLatency < 100 ? "bg- linear-to-r from-green-500 to-emerald-500" :
-                      stats.avgLatency < 500 ? "bg- linear-to-r from-yellow-500 to-amber-500" :
-                      "bg- linear-to-r from-red-500 to-orange-500"
+                      stats.avgLatency < 100 ? "bg-linear-to-r from-green-500 to-emerald-500" :
+                      stats.avgLatency < 500 ? "bg-linear-to-r from-yellow-500 to-amber-500" :
+                      "bg-linear-to-r from-red-500 to-orange-500"
                     }`}
                     style={{ width: `${Math.min((stats.avgLatency / 1000) * 100, 100)}%` }}
                   ></div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Charts Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Bar Chart */}
+          <div className="bg-linear-to-br from-slate-800 to-slate-900 border border-slate-700/50 rounded-xl p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="bg-linear-to-br from-indigo-500 to-purple-500 p-2 rounded-lg">
+                <BarChart3 className="w-5 h-5 text-white" strokeWidth={2.5} />
+              </div>
+              <h2 className="text-xl font-semibold text-white">Request Distribution</h2>
+            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={barChartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                <XAxis dataKey="name" stroke="#94a3b8" />
+                <YAxis stroke="#94a3b8" />
+                <Tooltip 
+                  contentStyle={{ 
+                    backgroundColor: "#1e293b", 
+                    border: "1px solid #475569",
+                    borderRadius: "8px"
+                  }}
+                  labelStyle={{ color: "#e2e8f0" }}
+                />
+                <Legend />
+                <Bar dataKey="Successful" fill="#10b981" radius={[8, 8, 0, 0]} />
+                <Bar dataKey="Failed" fill="#ef4444" radius={[8, 8, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Pie Chart */}
+          <div className="bg-linear-to-br from-slate-800 to-slate-900 border border-slate-700/50 rounded-xl p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="bg-linear-to-br from-pink-500 to-rose-500 p-2 rounded-lg">
+                <Activity className="w-5 h-5 text-white" strokeWidth={2.5} />
+              </div>
+              <h2 className="text-xl font-semibold text-white">Success vs Failure Rate</h2>
+            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={pieChartData}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                  outerRadius={100}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {pieChartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip 
+                  contentStyle={{ 
+                    backgroundColor: "#1e293b", 
+                    border: "1px solid #475569",
+                    borderRadius: "8px"
+                  }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
