@@ -19,13 +19,6 @@ const Logo = ({ src }) => (
   </div>
 );
 
-// Status indicator component
-const StatusIndicator = ({ className = "" }) => (
-  <div className={`flex items-center gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 bg-green-500/10 border border-green-500/20 rounded-full ${className}`}>
-    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-    <span className="text-xs text-green-400 font-medium">Live</span>
-  </div>
-);
 
 export default function Navbar() {
   const location = useLocation();
@@ -47,7 +40,6 @@ export default function Navbar() {
           {/* Logo/Brand & Status - Horizontal on mobile */}
           <div className="flex items-center justify-between w-full sm:w-auto">
             <Logo src={logo} />
-            <StatusIndicator className="sm:hidden" />
           </div>
           
           {/* Navigation Links - Scrollable on mobile */}
@@ -71,8 +63,6 @@ export default function Navbar() {
             ))}
           </div>
           
-          {/* Status Indicator - Desktop position */}
-          <StatusIndicator className="hidden sm:flex" />
         </div>
       </div>
     </nav>
