@@ -73,9 +73,10 @@ export default function Logs() {
     return "text-green-400";
   };
 
-  const TIMEOUT_THRESHOLD = 3000;
-
-  const isTimeout = (latency) => latency > TIMEOUT_THRESHOLD;
+  const isTimeout = (log) => {
+    if (!log.maxLatency) return false; // no chaos config
+    return log.latency > log.maxLatency;
+  };
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 p-6">
@@ -238,7 +239,7 @@ export default function Logs() {
                         </span>
                       </td>
                       <td className="p-4">
-                        {isTimeout(log.latency) ? (
+                        {isTimeout(log) ? (
                           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-lg text-sm font-bold text-red-400 bg-red-500/10">
                             <AlertCircle className="w-4 h-4" />
                             YES

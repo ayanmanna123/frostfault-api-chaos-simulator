@@ -7,7 +7,11 @@ const LogSchema = new mongoose.Schema(
     method: String,
     statusCode: Number,
     latency: Number,
-    errorType: String
+    errorType: String,
+    maxLatency: {
+      type: Number,
+      default: null,
+    },
   },
   { timestamps: true }
 );

@@ -14,7 +14,8 @@ module.exports = async (req, res, next) => {
       method: req.method,
       statusCode: res.statusCode,
       latency,
-      errorType: res.statusCode >= 400 ? "ERROR" : null
+      errorType: res.statusCode >= 400 ? "ERROR" : null,
+      maxLatency: res.locals.mockApi?.chaosConfig?.latency?.max ?? null,
     });
   });
 
