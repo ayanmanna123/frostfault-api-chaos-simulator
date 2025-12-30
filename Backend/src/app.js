@@ -15,7 +15,7 @@ app.use(cors({
   origin: [
     "https://frostfault.xyz",
     "https://www.frostfault.xyz",
-    "https://frostfault-api.vercel.app/"
+    "https://frostfault-api.vercel.app"
   ]
 }));
 app.use(express.json());
